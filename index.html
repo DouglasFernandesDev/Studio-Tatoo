@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aline Santos Tattoo | Estúdio de Tatuagem</title>
+<meta name="description" content="Estúdio de tatuagem Aline Santos. Fineline, realismo, blackwork e cover-up. Agende pelo WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<a class="link-pular" href="#conteudo-principal">Pular para o conteúdo</a>
+
+<!-- Barra fina indicando o progresso de rolagem da página -->
+<div class="barra-progresso" id="barra-progresso" aria-hidden="true"></div>
+
+<!-- ============ CABEÇALHO ============ -->
+<header class="cabecalho" id="cabecalho">
+  <a href="#topo" class="logotipo">
+    <!-- SUBSTITUIR: troque o span abaixo por <img src="assets/logotipo.png" alt="Aline Santos Tattoo"> quando enviar sua logo -->
+    <span class="logotipo-marca" aria-hidden="true">AS</span>
+    <span class="logotipo-texto">Aline Santos<span class="logotipo-legenda">estúdio de tatuagem</span></span>
+  </a>
+
+  <nav class="menu-principal" id="menu-principal" aria-label="Menu principal">
+    <ul class="lista-menu">
+      <li><a class="link-menu" href="#sobre">Sobre</a></li>
+      <li><a class="link-menu" href="#servicos">Serviços</a></li>
+      <li><a class="link-menu" href="#galeria">Portfólio</a></li>
+      <li><a class="link-menu" href="#agendar">Agendar</a></li>
+      <li><a class="link-menu" href="#contato">Contato</a></li>
+    </ul>
+  </nav>
+
+  <a href="#agendar" class="botao botao-contorno cta-cabecalho">Agendar horário</a>
+
+  <button type="button" class="botao-menu" id="botao-menu" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal">
+    <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+  </button>
+</header>
+
+<main id="conteudo-principal">
+
+  <!-- ============ ABERTURA (HERO) ============ -->
+  <section class="abertura" id="topo">
+    <!-- SUBSTITUIR: troque a url abaixo pela foto real do estúdio -->
+    <img class="abertura-fundo" data-paralaxe src="https://placehold.co/1600x2000/000000/1a1a1a?text=Foto+do+estudio" alt="Interior do estúdio Aline Santos Tattoo, com maca de atendimento e flash sheets na parede" loading="eager">
+
+    <svg class="selo selo-abertura" aria-hidden="true" viewBox="0 0 160 160">
+      <circle cx="80" cy="80" r="72"/>
+      <text x="80" y="70" text-anchor="middle">ORIGINAL</text>
+      <text x="80" y="95" text-anchor="middle">BY ALINE SANTOS</text>
+    </svg>
+
+    <hgroup class="conteudo-abertura">
+      <p class="epigrafe epigrafe-clara">Estúdio de tatuagem &mdash; desde a primeira agulhada</p>
+      <h1 class="titulo-abertura">Aline<br>Santos</h1>
+      <p class="frase-assinatura">arte que fica na pele</p>
+    </hgroup>
+
+    <p class="acoes-abertura">
+      <a href="#agendar" class="botao botao-solido">Agendar minha tattoo</a>
+      <a href="#galeria" class="botao botao-fantasma">Ver portfólio</a>
+    </p>
+
+    <a href="#sobre" class="indicador-rolagem" aria-label="Rolar para a seção Sobre">
+      <span aria-hidden="true"></span>
+    </a>
+  </section>
+
+  <!-- ============ FAIXA DE CREDENCIAIS (marquee) ============ -->
+  <div class="faixa-credenciais" aria-hidden="true">
+    <div class="trilha-credenciais">
+      <span>Estúdio autorizado</span><span class="ponto-separador">&bull;</span>
+      <span>Material esterilizado e descartável</span><span class="ponto-separador">&bull;</span>
+      <span>Tinta vegana certificada</span><span class="ponto-separador">&bull;</span>
+      <span>Atendimento com hora marcada</span><span class="ponto-separador">&bull;</span>
+      <span>Estúdio autorizado</span><span class="ponto-separador">&bull;</span>
+      <span>Material esterilizado e descartável</span><span class="ponto-separador">&bull;</span>
+      <span>Tinta vegana certificada</span><span class="ponto-separador">&bull;</span>
+      <span>Atendimento com hora marcada</span><span class="ponto-separador">&bull;</span>
+    </div>
+  </div>
+
+  <!-- ============ SOBRE ============ -->
+  <section class="secao" id="sobre">
+    <div class="grade-sobre">
+      <figure class="foto-artista">
+        <!-- SUBSTITUIR: foto real da Aline -->
+        <img src="https://placehold.co/800x1000/171717/6b6b6b?text=Foto+da+Aline" alt="Aline Santos, tatuadora, no estúdio">
+        <svg class="selo selo-sobre" aria-hidden="true" viewBox="0 0 160 160">
+          <circle cx="80" cy="80" r="72"/>
+          <text x="80" y="75" text-anchor="middle">EST. 2016</text>
+        </svg>
+      </figure>
+
+      <article class="texto-sobre">
+        <p class="epigrafe">Sobre a artista</p>
+        <h2 class="titulo-secao">Cada traço<br>conta uma história</h2>
+        <p class="paragrafo">
+          Aline Santos tatua há mais de <strong>9 anos</strong> e já transformou histórias, memórias e afetos em traços permanentes para mais de três mil clientes. Seu trabalho equilibra técnica apurada com escuta atenta: antes de qualquer agulha, existe conversa.
+        </p>
+        <p class="paragrafo">
+          Formada em Artes Visuais, passou por estúdios de referência em São Paulo antes de abrir seu próprio espaço, pensado para receber cada cliente com conforto, silêncio quando precisa e música quando pede. Higiene e materiais descartáveis certificados em cada sessão.
+        </p>
+
+        <dl class="lista-estatisticas">
+          <div class="estatistica"><dt>anos de experiência</dt><dd data-contador="9" data-sufixo="+">9+</dd></div>
+          <div class="estatistica"><dt>tatuagens realizadas</dt><dd data-contador="3000" data-sufixo="+">3.000+</dd></div>
+          <div class="estatistica"><dt>avaliação média dos clientes</dt><dd data-contador="4.9" data-sufixo="/5" data-decimais="1">4,9/5</dd></div>
+        </dl>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ SERVIÇOS ============ -->
+  <section class="secao secao-escura" id="servicos">
+    <!-- SUBSTITUIR: foto real de detalhe do estúdio (máquina, tinta, bancada) -->
+    <img class="imagem-paralaxe" data-paralaxe src="https://placehold.co/1600x1200/000000/1a1a1a?text=Detalhe+do+estudio" alt="" aria-hidden="true">
+
+    <div class="cabecalho-secao">
+      <p class="epigrafe epigrafe-clara">O que fazemos</p>
+      <h2 class="titulo-secao titulo-claro">Serviços</h2>
+    </div>
+
+    <ul class="grade-servicos">
+
+      <li class="cartao-servico">
+        <svg class="icone-servico" aria-hidden="true" viewBox="0 0 48 48"><path d="M6 42 L30 18 M30 18l6-6 6 6-6 6M14 34l6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        <h3>Fineline</h3>
+        <p>Traços finos e delicados, ideais para desenhos minimalistas e detalhados.</p>
+        <span class="preco-servico">a partir de R$ 250</span>
+      </li>
+
+      <li class="cartao-servico">
+        <svg class="icone-servico" aria-hidden="true" viewBox="0 0 48 48"><circle cx="24" cy="20" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 42c2-10 8-14 16-14s14 4 16 14" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        <h3>Realismo</h3>
+        <p>Retratos e cenas com profundidade, luz e sombra, com fidelidade fotográfica.</p>
+        <span class="preco-servico">a partir de R$ 600</span>
+      </li>
+
+      <li class="cartao-servico">
+        <svg class="icone-servico" aria-hidden="true" viewBox="0 0 48 48"><rect x="8" y="8" width="32" height="32" fill="currentColor"/></svg>
+        <h3>Blackwork</h3>
+        <p>Composições em preto sólido, com contraste forte e presença marcante.</p>
+        <span class="preco-servico">a partir de R$ 450</span>
+      </li>
+
+      <li class="cartao-servico">
+        <svg class="icone-servico" aria-hidden="true" viewBox="0 0 48 48"><path d="M10 24a14 14 0 1 0 28 0" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 24l6-6M10 24l6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        <h3>Cover-up</h3>
+        <p>Reformulação de tatuagens antigas em novas artes, com estudo de cobertura.</p>
+        <span class="preco-servico">a partir de R$ 500</span>
+      </li>
+
+      <li class="cartao-servico">
+        <svg class="icone-servico" aria-hidden="true" viewBox="0 0 48 48"><path d="M24 6v36M12 12l24 24M36 12L12 36" stroke="currentColor" stroke-width="2"/></svg>
+        <h3>Piercing</h3>
+        <p>Aplicação de piercings com material esterilizado e biocompatível.</p>
+        <span class="preco-servico">a partir de R$ 120</span>
+      </li>
+
+      <li class="cartao-servico">
+        <svg class="icone-servico" aria-hidden="true" viewBox="0 0 48 48"><path d="M6 24h10l4-10 8 20 4-10h10" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        <h3>Retoque</h3>
+        <p>Manutenção de cor e traço em tatuagens já cicatrizadas.</p>
+        <span class="preco-servico">consultar valor</span>
+      </li>
+
+    </ul>
+  </section>
+
+  <!-- ============ GALERIA (PORTFÓLIO) ============ -->
+  <section class="secao" id="galeria">
+    <div class="cabecalho-secao">
+      <p class="epigrafe">Trabalhos recentes</p>
+      <h2 class="titulo-secao">Portfólio</h2>
+    </div>
+
+    <div class="carrossel" id="carrossel">
+      <button type="button" class="botao-carrossel botao-anterior" id="botao-anterior" aria-label="Trabalho anterior">&#8592;</button>
+
+      <div class="janela-carrossel">
+        <ul class="trilha-carrossel" id="trilha-carrossel">
+          <!-- SUBSTITUIR cada placeholder pelas fotos reais das tatuagens -->
+          <li class="item-carrossel">
+            <figure class="quadro-tatuagem">
+              <img src="https://placehold.co/700x900/0d0d0d/f7f5f2?text=Tattoo+01" alt="Tatuagem fineline em antebraço" loading="lazy">
+              <figcaption>Fineline</figcaption>
+            </figure>
+          </li>
+          <li class="item-carrossel">
+            <figure class="quadro-tatuagem">
+              <img src="https://placehold.co/700x900/171717/f7f5f2?text=Tattoo+02" alt="Tatuagem realismo em braço" loading="lazy">
+              <figcaption>Realismo</figcaption>
+            </figure>
+          </li>
+          <li class="item-carrossel">
+            <figure class="quadro-tatuagem">
+              <img src="https://placehold.co/700x900/0d0d0d/f7f5f2?text=Tattoo+03" alt="Tatuagem blackwork nas costas" loading="lazy">
+              <figcaption>Blackwork</figcaption>
+            </figure>
+          </li>
+          <li class="item-carrossel">
+            <figure class="quadro-tatuagem">
+              <img src="https://placehold.co/700x900/171717/f7f5f2?text=Tattoo+04" alt="Cover-up finalizado" loading="lazy">
+              <figcaption>Cover-up</figcaption>
+            </figure>
+          </li>
+          <li class="item-carrossel">
+            <figure class="quadro-tatuagem">
+              <img src="https://placehold.co/700x900/0d0d0d/f7f5f2?text=Tattoo+05" alt="Tatuagem fineline delicada" loading="lazy">
+              <figcaption>Fineline</figcaption>
+            </figure>
+          </li>
+          <li class="item-carrossel">
+            <figure class="quadro-tatuagem">
+              <img src="https://placehold.co/700x900/171717/f7f5f2?text=Tattoo+06" alt="Tatuagem realismo detalhado" loading="lazy">
+              <figcaption>Realismo</figcaption>
+            </figure>
+          </li>
+        </ul>
+      </div>
+
+      <button type="button" class="botao-carrossel botao-proximo" id="botao-proximo" aria-label="Próximo trabalho">&#8594;</button>
+    </div>
+
+    <div class="pontos-carrossel" id="pontos-carrossel" role="tablist" aria-label="Selecionar trabalho"></div>
+  </section>
+
+  <!-- ============ AGENDAMENTO ============ -->
+  <section class="secao secao-escura" id="agendar">
+    <!-- SUBSTITUIR: foto real do ambiente de espera/recepção do estúdio -->
+    <img class="imagem-paralaxe" data-paralaxe src="https://placehold.co/1600x1200/000000/1a1a1a?text=Ambiente+do+estudio" alt="" aria-hidden="true">
+
+    <div class="grade-agendar">
+      <article class="introducao-agendamento">
+        <p class="epigrafe epigrafe-clara">Vamos marcar sua sessão</p>
+        <h2 class="titulo-secao titulo-claro">Agende pelo<br>WhatsApp</h2>
+        <p class="paragrafo paragrafo-claro">
+          Preencha os dados abaixo. Ao enviar, sua solicitação é organizada automaticamente numa mensagem e você é direcionado direto para o WhatsApp do estúdio &mdash; sem precisar digitar nada lá.
+        </p>
+      </article>
+
+      <form class="formulario-agendamento" id="formulario-agendamento" novalidate>
+        <label class="campo">
+          Nome completo
+          <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+        </label>
+
+        <label class="campo">
+          Seu telefone / WhatsApp
+          <input type="tel" id="telefone" name="telefone" placeholder="(21) 90000-0000" required>
+        </label>
+
+        <label class="campo">
+          Tipo de serviço
+          <select id="servico" name="servico" required>
+            <option value="" disabled selected>Selecione</option>
+            <option value="Fineline">Fineline</option>
+            <option value="Realismo">Realismo</option>
+            <option value="Blackwork">Blackwork</option>
+            <option value="Cover-up">Cover-up</option>
+            <option value="Piercing">Piercing</option>
+            <option value="Retoque">Retoque</option>
+            <option value="Outro">Outro / não sei ainda</option>
+          </select>
+        </label>
+
+        <label class="campo">
+          Tamanho aproximado / local no corpo
+          <input type="text" id="tamanho" name="tamanho" placeholder="Ex: pequena, no antebraço">
+        </label>
+
+        <label class="campo">
+          Data desejada
+          <input type="date" id="data" name="data">
+        </label>
+
+        <label class="campo campo-largo">
+          Conte sua ideia / referência
+          <textarea id="referencia" name="referencia" rows="3" placeholder="Descreva o estilo, tema ou envie referências pelo WhatsApp após o envio"></textarea>
+        </label>
+
+        <button type="submit" class="botao botao-solido campo-largo">
+          Enviar e continuar no WhatsApp
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.38 5.06L2 22l5.06-1.32A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm.02 18.06c-1.6 0-3.15-.44-4.5-1.28l-.32-.2-3.34.87.9-3.26-.21-.34A7.94 7.94 0 0 1 4.06 12c0-4.4 3.58-7.98 7.96-7.98 4.4 0 7.98 3.58 7.98 7.98s-3.58 8.06-7.98 8.06z"/></svg>
+        </button>
+
+        <p class="nota-formulario campo-largo">Você será redirecionado ao WhatsApp com sua solicitação já preenchida.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ CONTATO ============ -->
+  <section class="secao" id="contato">
+    <div class="grade-contato">
+      <article class="detalhes-contato">
+        <p class="epigrafe">Fale com o estúdio</p>
+        <h2 class="titulo-secao">Contato</h2>
+
+        <address class="lista-contato">
+          <dl>
+            <dt>Endereço</dt>
+            <dd>Rua das Palmeiras, 120 &mdash; Centro, Itaboraí/RJ</dd>
+
+            <dt>Horário</dt>
+            <dd>Terça a sábado, das 10h às 19h</dd>
+
+            <dt>WhatsApp</dt>
+            <dd><a href="#" id="whatsapp-contato">(21) 90000-0000</a></dd>
+
+            <dt>E-mail</dt>
+            <dd><a href="mailto:contato@alinesantostattoo.com">contato@alinesantostattoo.com</a></dd>
+          </dl>
+        </address>
+
+        <ul class="lista-redes-sociais">
+          <li><a href="#" aria-label="Instagram" class="icone-social">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5A5.5 5.5 0 1 1 6.5 13 5.5 5.5 0 0 1 12 7.5zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5zM17.8 6a1.2 1.2 0 1 1-1.2 1.2A1.2 1.2 0 0 1 17.8 6z"/></svg>
+          </a></li>
+          <li><a href="#" aria-label="Facebook" class="icone-social">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-7h2.4l.4-3h-2.8V9.4c0-.9.3-1.5 1.6-1.5H16V5.2C15.6 5.1 14.6 5 13.5 5c-2.4 0-4 1.4-4 4v2h-2.5v3H9.5v7h4z"/></svg>
+          </a></li>
+          <li><a href="#" aria-label="TikTok" class="icone-social">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14 3h2.2c.2 1.4 1.3 2.6 2.8 2.9V8c-1 0-2-.3-2.9-.8v6.4A4.6 4.6 0 1 1 11.5 9v2.2a2.4 2.4 0 1 0 1.9 2.4V3z"/></svg>
+          </a></li>
+          <li><a href="#" aria-label="Pinterest" class="icone-social">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-3.6 19.3c-.1-.8-.2-2 .1-2.9l1.2-5s-.3-.6-.3-1.5c0-1.4.8-2.4 1.8-2.4.9 0 1.3.6 1.3 1.4 0 .9-.6 2.1-.8 3.3-.3 1 .5 1.9 1.5 1.9 1.8 0 3-2.3 3-5 0-2.1-1.4-3.6-4-3.6-2.9 0-4.7 2.1-4.7 4.5 0 .8.2 1.4.6 1.9.2.2.2.3.1.5l-.2.9c-.1.3-.3.4-.6.2-1.1-.4-1.7-1.7-1.7-3.2 0-2.4 2-5.2 6-5.2 3.2 0 5.5 2.2 5.5 5.2 0 3.6-2 6.2-4.7 6.2-1 0-1.9-.5-2.2-1.2 0 0-.5 2-.6 2.4-.2.7-.6 1.5-1 2A10 10 0 1 0 12 2z"/></svg>
+          </a></li>
+        </ul>
+      </article>
+
+      <figure class="mapa">
+        <!-- SUBSTITUIR: coloque o endereço real no src do iframe do Google Maps -->
+        <iframe title="Localização do estúdio no mapa" src="https://www.google.com/maps?q=Itabora%C3%AD%20RJ&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <figcaption>Estúdio Aline Santos Tattoo no mapa</figcaption>
+      </figure>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ RODAPÉ ============ -->
+<footer class="rodape">
+  <div class="rodape-conteudo">
+    <p>&copy; <time id="ano-atual"></time> Aline Santos Tattoo. Todos os direitos reservados.</p>
+    <a href="#topo" class="link-voltar-topo">Voltar ao topo &uarr;</a>
+  </div>
+</footer>
+
+<!-- Botão flutuante WhatsApp -->
+<a href="#" class="whatsapp-flutuante" id="whatsapp-flutuante" aria-label="Falar no WhatsApp" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.38 5.06L2 22l5.06-1.32A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm.02 18.06c-1.6 0-3.15-.44-4.5-1.28l-.32-.2-3.34.87.9-3.26-.21-.34A7.94 7.94 0 0 1 4.06 12c0-4.4 3.58-7.98 7.96-7.98 4.4 0 7.98 3.58 7.98 7.98s-3.58 8.06-7.98 8.06z"/></svg>
+</a>
+
+<script src="js/script.js"></script>
+</body>
+</html>

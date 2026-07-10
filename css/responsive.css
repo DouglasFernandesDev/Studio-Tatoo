@@ -1,0 +1,57 @@
+/* ==========================================================
+   ALINE SANTOS TATTOO — responsive.css
+   Ajustes de layout para telas maiores (tablet e desktop).
+   Este arquivo SÓ contém media queries — a base mobile-first
+   fica inteiramente em style.css.
+   Carregar DEPOIS de style.css no HTML.
+   ========================================================== */
+
+/* ============================================================
+   TABLET (>= 640px)
+   ============================================================ */
+@media (min-width:640px){
+  .item-carrossel{ flex:0 0 60%; max-width:60%; }
+  .formulario-agendamento{ grid-template-columns:1fr 1fr; }
+}
+
+/* ============================================================
+   DESKTOP (>= 1024px)
+   ============================================================ */
+@media (min-width:1024px){
+  .botao-menu{ display:none; }
+
+  .menu-principal{
+    position:static; inset:auto; inline-size:auto; background:transparent;
+    padding:0;
+  }
+  .lista-menu{ flex-direction:row; align-items:center; gap:28px; }
+  .link-menu{
+    font-family:var(--fonte-texto); font-weight:500; font-size:0.85rem;
+    letter-spacing:0.02em; border-bottom:0; padding:4px 0; position:relative;
+    color:var(--cinza-300);
+    transition:color var(--transicao-rapida);
+  }
+  .link-menu::after{
+    content:""; position:absolute; left:0; right:0; bottom:-2px; height:1px;
+    background:var(--branco); scale:0 1; transition:scale var(--transicao);
+    transform-origin:left;
+  }
+  .link-menu:hover{ color:var(--branco); }
+  .link-menu:hover::after{ scale:1 1; }
+  .link-menu--ativo{ color:var(--branco); }
+  .link-menu--ativo::after{ scale:1 1; }
+
+  .cta-cabecalho{ display:inline-flex; border-color:var(--branco); color:var(--branco); }
+  .cta-cabecalho:hover{ background:var(--branco); color:var(--preto); }
+
+  .grade-sobre{ grid-template-columns:380px 1fr; align-items:center; gap:80px; }
+
+  .item-carrossel{ flex:0 0 38%; max-width:38%; }
+
+  .grade-agendar{ grid-template-columns:380px 1fr; gap:80px; }
+
+  .grade-contato{ grid-template-columns:420px 1fr; gap:80px; align-items:start; }
+  .mapa iframe{ height:420px; }
+
+  .rodape-conteudo{ flex-direction:row; justify-content:space-between; text-align:left; }
+}
