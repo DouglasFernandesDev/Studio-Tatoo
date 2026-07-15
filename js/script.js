@@ -9,12 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const prefereMenosMovimento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------------------------------------------------------
-     0. CONFIGURAÇÃO — troque pelo número real do estúdio
-     Formato: código do país + DDD + número, sem espaços/símbolos
-     Ex: Brasil (21) 90000-0000  ->  "5521900000000"
-  --------------------------------------------------------- */
-  const NUMERO_WHATSAPP = "5521900000000"; // SUBSTITUIR pelo número real
+  const NUMERO_WHATSAPP = "5522999335284"; 
 
   /* ---------------------------------------------------------
      1. Cabeçalho ao rolar + barra de progresso
@@ -300,7 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ---------------------------------------------------------
      9. Botão flutuante do WhatsApp + link de contato
   --------------------------------------------------------- */
-  const mensagemPadrao = "Olá! Vim pelo site e gostaria de saber mais sobre agendar uma tatuagem com a Aline 🖤";
+  const mensagemPadrao = "Olá! Vim pelo site e gostaria de agendar uma Tatuagem !!";
   const montarLinkWhatsapp = (numero, mensagem) =>
     `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
 
