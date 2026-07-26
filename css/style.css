@@ -1,10 +1,4 @@
-/* ==========================================================
-   ALINE SANTOS TATTOO — style.css (BASE MOBILE-FIRST)
-   Preto vivo (gradientes, não cor chapada) + tipografia editorial
-   (Fraunces + Inter) + camadas de imagem com parallax.
-   Este arquivo é a base mobile-first; ajustes para telas
-   maiores estão em responsive.css.
-   ========================================================== */
+
 
 :root {
   --preto: #030302;
@@ -81,7 +75,7 @@ button {
   outline-offset: 3px;
 }
 
-/* ---------- Textura de grão sutil sobre todo o site ---------- */
+
 body::after {
   content: "";
   position: fixed;
@@ -93,7 +87,6 @@ body::after {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* ---------- Barra de progresso de rolagem ---------- */
 .barra-progresso {
   position: fixed;
   top: 0;
@@ -122,9 +115,6 @@ body::after {
   top: 12px;
 }
 
-/* ---------- Truque de grid: centraliza conteúdo sem precisar
-   de um <div class="container">. Aplicado a toda .secao e ao
-   rodapé: 3 colunas, o miolo tem no máximo --largura-conteudo. */
 .secao {
   display: grid;
   grid-template-columns: 1fr min(var(--largura-conteudo), 100% - 40px) 1fr;
@@ -141,7 +131,6 @@ body::after {
   grid-column: 2;
 }
 
-/* ---------- Camada de imagem com parallax (serviços / agendar) ---------- */
 .secao:has(.imagem-paralaxe) {
   position: relative;
   overflow: hidden;
@@ -172,7 +161,6 @@ body::after {
   background: linear-gradient(180deg, rgba(3, 3, 2, 0.7) 0%, rgba(3, 3, 2, 0.94) 100%);
 }
 
-/* ---------- Textos utilitários ---------- */
 .epigrafe {
   display: flex;
   align-items: center;
@@ -191,11 +179,9 @@ body::after {
   background: currentColor;
   flex-shrink: 0;
 }
-
 .epigrafe-clara {
   color: var(--cinza-300);
 }
-
 .titulo-secao {
   font-family: var(--fonte-titulo);
   font-weight: 600;
@@ -205,7 +191,6 @@ body::after {
   line-height: 1.05;
   letter-spacing: -0.02em;
 }
-
 .titulo-claro {
   color: var(--branco);
 }
@@ -226,7 +211,6 @@ body::after {
   gap: 8px;
 }
 
-/* ---------- Botões ---------- */
 .botao {
   display: inline-flex;
   align-items: center;
@@ -281,9 +265,6 @@ body::after {
   color: var(--preto);
 }
 
-/* ============================================================
-   CABEÇALHO
-   ============================================================ */
 .cabecalho {
   position: fixed;
   inset: 0 0 auto 0;
@@ -411,9 +392,6 @@ body::after {
   transform: translateY(-8px) rotate(-45deg);
 }
 
-/* ============================================================
-   ABERTURA (HERO)
-   ============================================================ */
 .abertura {
   position: relative;
   min-height: 100vh;
@@ -519,7 +497,6 @@ body::after {
   }
 }
 
-/* Selo — elemento de assinatura visual */
 .selo {
   position: absolute;
   z-index: 2;
@@ -556,9 +533,6 @@ body::after {
   }
 }
 
-/* ============================================================
-   FAIXA DE CREDENCIAIS (marquee)
-   ============================================================ */
 .faixa-credenciais {
   background: var(--preto);
   color: var(--cinza-300);
@@ -592,9 +566,6 @@ body::after {
   }
 }
 
-/* ============================================================
-   SEÇÕES GERAIS
-   ============================================================ */
 .secao-escura {
   background: radial-gradient(120% 140% at 15% -10%, var(--preto-elevado) 0%, var(--preto) 55%);
   color: var(--branco);
@@ -657,7 +628,6 @@ body::after {
   color: var(--cinza-600);
 }
 
-/* ---------- Serviços ---------- */
 .grade-servicos {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -726,7 +696,6 @@ body::after {
   padding-top: 10px;
 }
 
-/* ---------- Galeria / Carrossel ---------- */
 .carrossel {
   position: relative;
   display: flex;
@@ -833,7 +802,6 @@ body::after {
   transform: scale(1.3);
 }
 
-/* ---------- Agendar ---------- */
 .grade-agendar {
   display: grid;
   grid-template-columns: 1fr;
@@ -901,7 +869,6 @@ body::after {
   text-align: center;
 }
 
-/* ---------- Contato ---------- */
 .grade-contato {
   display: grid;
   grid-template-columns: 1fr;
@@ -977,7 +944,6 @@ body::after {
   margin-top: 8px;
 }
 
-/* ---------- Rodapé ---------- */
 .rodape {
   display: grid;
   grid-template-columns: 1fr min(var(--largura-conteudo), 100% - 40px) 1fr;
@@ -998,7 +964,6 @@ body::after {
   text-decoration: underline;
 }
 
-/* ---------- Botão flutuante WhatsApp ---------- */
 .whatsapp-flutuante {
   position: fixed;
   bottom: 20px;
@@ -1007,7 +972,7 @@ body::after {
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: var(--preto);
+  background: green;
   color: var(--branco);
   display: grid;
   place-items: center;
@@ -1039,7 +1004,6 @@ body::after {
   }
 }
 
-/* ---------- Revelar ao rolar ---------- */
 .revelar {
   opacity: 0;
   transform: translateY(28px) scale(0.98);
@@ -1052,7 +1016,6 @@ body::after {
   transform: translateY(0) scale(1);
 }
 
-/* ---------- Menu: item ativo (scrollspy) — só relevante no desktop, ver responsive.css ---------- */
 .link-menu--ativo {
   color: var(--branco);
 }
