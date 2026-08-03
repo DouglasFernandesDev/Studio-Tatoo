@@ -1,5 +1,3 @@
-
-
 :root {
   --preto: #030302;
   --preto-elevado: #111009;
@@ -1018,4 +1016,111 @@ body::after {
 
 .link-menu--ativo {
   color: var(--branco);
+}
+
+/* ==========================================================
+   MODAL DE ZOOM — galeria em tela cheia
+   ========================================================== */
+.modal-zoom {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(3, 3, 2, 0.94);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transicao), visibility var(--transicao);
+  padding: 24px;
+}
+
+.modal-zoom--aberto {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-zoom img {
+  max-width: 92vw;
+  max-height: 88vh;
+  width: auto;
+  object-fit: contain;
+  border-radius: var(--raio);
+  transform: scale(0.92);
+  transition: transform var(--transicao);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  cursor: grab;
+  touch-action: pan-y;
+}
+
+.modal-zoom img:active {
+  cursor: grabbing;
+}
+
+.modal-zoom--aberto img {
+  transform: scale(1);
+}
+
+.modal-zoom-fechar {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--branco);
+  border: 1px solid var(--preto);
+  display: grid;
+  place-items: center;
+  font-size: 1.3rem;
+  line-height: 1;
+  z-index: 2;
+  transition: transform var(--transicao-rapida);
+}
+
+.modal-zoom-fechar:hover {
+  transform: scale(1.08);
+}
+
+.modal-zoom-nav {
+  position: absolute;
+  top: 50%;
+  translate: 0 -50%;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--branco);
+  border: 1px solid var(--preto);
+  display: grid;
+  place-items: center;
+  font-size: 1.2rem;
+  z-index: 2;
+  transition: transform var(--transicao-rapida),
+              background var(--transicao-rapida);
+}
+
+.modal-zoom-nav:hover {
+  background: var(--preto);
+  color: var(--branco);
+}
+
+.modal-zoom-anterior {
+  left: 16px;
+}
+
+.modal-zoom-proximo {
+  right: 16px;
+}
+
+@media (max-width: 640px) {
+  .modal-zoom-nav {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+}
+
+/* cursor indicando que a imagem pode ser aberta por completo */
+.quadro-tatuagem img {
+  cursor: pointer;
 }

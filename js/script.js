@@ -2,7 +2,8 @@
    ALINE SANTOS TATTOO — script.js
    Menu mobile, cabeçalho ao rolar, barra de progresso, parallax,
    scrollspy do menu, carrossel, contadores animados, botões
-   magnéticos, revelar ao rolar e integração inteligente com WhatsApp.
+   magnéticos, revelar ao rolar, modal de zoom da galeria e
+   integração inteligente com WhatsApp.
    ========================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -175,8 +176,17 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!arrastando) return;
     arrastando = false;
     const diferenca = posicaoInicial - e.clientX;
+
     if (Math.abs(diferenca) > 40) {
+      // arraste real -> navega o carrossel
       diferenca > 0 ? irParaItem(indiceAtual + 1) : irParaItem(indiceAtual - 1);
+    } else {
+      // não foi arraste, foi um toque/clique -> abre o zoom da foto tocada.
+      // Necessário porque o setPointerCapture acima redireciona o clique
+      // para o próprio "trilha", então a <img> nunca recebe o evento direto.
+      const elementoTocado = document.elementFromPoint(e.clientX, e.clientY);
+      const imgTocada = elementoTocado?.closest('.quadro-tatuagem')?.querySelector('img');
+      if (imgTocada) abrirModalZoom(imgTocada);
     }
   });
 
@@ -193,7 +203,94 @@ document.addEventListener('DOMContentLoaded', () => {
   [botaoAnterior, botaoProximo, trilha].forEach(el => el.addEventListener('click', reiniciarAutoplay));
 
   /* ---------------------------------------------------------
-     6. Contadores animados (seção Sobre)
+     6. Modal de zoom — abre a imagem da galeria em tela cheia,
+     com navegação por setas, teclado e swipe (arrastar o dedo)
+  --------------------------------------------------------- */
+  const modalZoom = document.createElement('div');
+  modalZoom.className = 'modal-zoom';
+  modalZoom.setAttribute('role', 'dialog');
+  modalZoom.setAttribute('aria-modal', 'true');
+  modalZoom.setAttribute('aria-label', 'Imagem ampliada');
+  modalZoom.innerHTML = `
+    <button type="button" class="modal-zoom-nav modal-zoom-anterior" aria-label="Foto anterior">&#8592;</button>
+    <img src="" alt="">
+    <button type="button" class="modal-zoom-nav modal-zoom-proximo" aria-label="Próxima foto">&#8594;</button>
+    <button type="button" class="modal-zoom-fechar" aria-label="Fechar imagem ampliada">&times;</button>
+  `;
+  document.body.appendChild(modalZoom);
+
+  const imagemModalZoom = modalZoom.querySelector('img');
+  const botaoFecharZoom = modalZoom.querySelector('.modal-zoom-fechar');
+  const botaoZoomAnterior = modalZoom.querySelector('.modal-zoom-anterior');
+  const botaoZoomProximo = modalZoom.querySelector('.modal-zoom-proximo');
+
+  // reaproveita o array "itens" (li's) já usado pelo carrossel na seção 5,
+  // pegando a <img> de dentro de cada um
+  const imagensGaleria = itens.map((item) => item.querySelector('img'));
+  let indiceModalZoom = 0;
+
+  function mostrarImagemModalZoom(indice) {
+    indiceModalZoom = (indice + imagensGaleria.length) % imagensGaleria.length;
+    const img = imagensGaleria[indiceModalZoom];
+    imagemModalZoom.src = img.src;
+    imagemModalZoom.alt = img.alt || '';
+  }
+
+  function abrirModalZoom(imgOrigem) {
+    const indice = imagensGaleria.indexOf(imgOrigem);
+    mostrarImagemModalZoom(indice === -1 ? 0 : indice);
+    modalZoom.classList.add('modal-zoom--aberto');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function fecharModalZoom() {
+    modalZoom.classList.remove('modal-zoom--aberto');
+    document.body.style.overflow = '';
+  }
+
+  botaoFecharZoom.addEventListener('click', fecharModalZoom);
+  botaoZoomAnterior.addEventListener('click', () => mostrarImagemModalZoom(indiceModalZoom - 1));
+  botaoZoomProximo.addEventListener('click', () => mostrarImagemModalZoom(indiceModalZoom + 1));
+
+  modalZoom.addEventListener('click', (e) => {
+    if (e.target === modalZoom) fecharModalZoom();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (!modalZoom.classList.contains('modal-zoom--aberto')) return;
+    if (e.key === 'Escape') fecharModalZoom();
+    if (e.key === 'ArrowRight') mostrarImagemModalZoom(indiceModalZoom + 1);
+    if (e.key === 'ArrowLeft') mostrarImagemModalZoom(indiceModalZoom - 1);
+  });
+
+  // Swipe (arrastar o dedo) para trocar de foto no modal — mesma lógica
+  // de Pointer Events usada no carrossel, cobrindo touch, mouse e caneta
+  let posicaoInicialModalZoom = 0;
+  let arrastandoModalZoom = false;
+
+  imagemModalZoom.addEventListener('pointerdown', (e) => {
+    posicaoInicialModalZoom = e.clientX;
+    arrastandoModalZoom = true;
+    imagemModalZoom.setPointerCapture(e.pointerId);
+  });
+
+  imagemModalZoom.addEventListener('pointerup', (e) => {
+    if (!arrastandoModalZoom) return;
+    arrastandoModalZoom = false;
+    const diferenca = posicaoInicialModalZoom - e.clientX;
+    if (Math.abs(diferenca) > 40) {
+      diferenca > 0
+        ? mostrarImagemModalZoom(indiceModalZoom + 1)
+        : mostrarImagemModalZoom(indiceModalZoom - 1);
+    }
+  });
+
+  imagemModalZoom.addEventListener('pointercancel', () => {
+    arrastandoModalZoom = false;
+  });
+
+  /* ---------------------------------------------------------
+     7. Contadores animados (seção Sobre)
      Anima de 0 até o valor real quando a estatística entra na tela.
      O HTML já traz o valor final como texto — isso é só um reforço
      visual progressivo; sem JavaScript, o número correto continua ali.
@@ -244,7 +341,7 @@ document.addEventListener('DOMContentLoaded', () => {
   contadores.forEach((el) => observadorContadores.observe(el));
 
   /* ---------------------------------------------------------
-     7. Botões magnéticos — só em telas com mouse de precisão.
+     8. Botões magnéticos — só em telas com mouse de precisão.
      O botão se desloca sutilmente em direção ao cursor, e volta
      ao lugar quando o mouse sai.
   --------------------------------------------------------- */
@@ -265,7 +362,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ---------------------------------------------------------
-     8. Revelar ao rolar (fade + translação ao entrar na tela)
+     9. Revelar ao rolar (fade + translação ao entrar na tela)
   --------------------------------------------------------- */
   const alvosRevelar = document.querySelectorAll(
     '.grade-sobre, .cartao-servico, #galeria .cabecalho-secao, .formulario-agendamento, .introducao-agendamento, .grade-contato'
@@ -293,7 +390,7 @@ document.addEventListener('DOMContentLoaded', () => {
   alvosRevelar.forEach((el) => observadorRevelar.observe(el));
 
   /* ---------------------------------------------------------
-     9. Botão flutuante do WhatsApp + link de contato
+     10. Botão flutuante do WhatsApp + link de contato
   --------------------------------------------------------- */
   const mensagemPadrao = "Olá! Vim pelo site e gostaria de agendar uma Tatuagem !!";
   const montarLinkWhatsapp = (numero, mensagem) =>
@@ -310,7 +407,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ---------------------------------------------------------
-     10. Formulário de agendamento inteligente
+     11. Formulário de agendamento inteligente
      Monta a mensagem formatada e abre no WhatsApp
   --------------------------------------------------------- */
   const formularioAgendamento = document.getElementById('formulario-agendamento');
@@ -367,7 +464,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ---------------------------------------------------------
-     11. Ano dinâmico no rodapé
+     12. Ano dinâmico no rodapé
   --------------------------------------------------------- */
   const anoAtual = document.getElementById('ano-atual');
   const ano = new Date().getFullYear();
