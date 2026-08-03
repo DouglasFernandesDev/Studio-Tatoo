@@ -1118,6 +1118,14 @@ body::after {
     height: 40px;
     font-size: 1rem;
   }
+
+  .modal-zoom-fechar {
+    width: 36px;
+    height: 36px;
+    top: 12px;
+    right: 12px;
+    font-size: 1.1rem;
+  }
 }
 
 /* cursor indicando que a imagem pode ser aberta por completo */
