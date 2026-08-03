@@ -170,6 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
     posicaoInicial = e.clientX;
     arrastando = true;
     trilha.setPointerCapture(e.pointerId);
+    clearInterval(autoplay); // evita o autoplay "puxar" o carrossel no meio do arraste
   });
 
   trilha.addEventListener('pointerup', (e) => {
@@ -198,6 +199,10 @@ document.addEventListener('DOMContentLoaded', () => {
   let autoplay = setInterval(() => irParaItem(indiceAtual + 1), 5000);
   const reiniciarAutoplay = () => {
     clearInterval(autoplay);
+    // se o modal de zoom estiver aberto, não reinicia — evita que o "click"
+    // disparado logo após o toque que abriu o modal reative o autoplay
+    // por trás dele (o navegador emite pointerup e depois click no mesmo toque)
+    if (modalZoom.classList.contains('modal-zoom--aberto')) return;
     autoplay = setInterval(() => irParaItem(indiceAtual + 1), 5000);
   };
   [botaoAnterior, botaoProximo, trilha].forEach(el => el.addEventListener('click', reiniciarAutoplay));
@@ -236,18 +241,25 @@ document.addEventListener('DOMContentLoaded', () => {
     imagemModalZoom.alt = img.alt || '';
   }
 
+  // guarda o elemento que estava focado antes de abrir o modal, para devolver
+  // o foco a ele quando o modal for fechado (evita "perder" o teclado)
+  let elementoFocadoAntesDoModal = null;
+
   function abrirModalZoom(imgOrigem) {
     const indice = imagensGaleria.indexOf(imgOrigem);
     mostrarImagemModalZoom(indice === -1 ? 0 : indice);
+    elementoFocadoAntesDoModal = document.activeElement;
     modalZoom.classList.add('modal-zoom--aberto');
     document.body.style.overflow = 'hidden';
     clearInterval(autoplay); // evita o carrossel avançar sozinho por trás do modal
+    botaoFecharZoom.focus();
   }
 
   function fecharModalZoom() {
     modalZoom.classList.remove('modal-zoom--aberto');
     document.body.style.overflow = '';
     reiniciarAutoplay(); // retoma o autoplay de onde o carrossel parou
+    if (elementoFocadoAntesDoModal) elementoFocadoAntesDoModal.focus();
   }
 
   botaoFecharZoom.addEventListener('click', fecharModalZoom);
@@ -263,6 +275,24 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Escape') fecharModalZoom();
     if (e.key === 'ArrowRight') mostrarImagemModalZoom(indiceModalZoom + 1);
     if (e.key === 'ArrowLeft') mostrarImagemModalZoom(indiceModalZoom - 1);
+
+    // prende o Tab dentro do modal — sem isso, dar Tab/Shift+Tab deixa o
+    // foco do teclado "escapar" para links/botões da página escondidos
+    // atrás do overlay escuro, que o usuário não consegue ver
+    if (e.key === 'Tab') {
+      const botoesFocaveis = [botaoZoomAnterior, botaoZoomProximo, botaoFecharZoom]
+        .filter((el) => el.offsetParent !== null); // ignora os que não estão visíveis
+      const primeiro = botoesFocaveis[0];
+      const ultimo = botoesFocaveis[botoesFocaveis.length - 1];
+
+      if (e.shiftKey && document.activeElement === primeiro) {
+        e.preventDefault();
+        ultimo.focus();
+      } else if (!e.shiftKey && document.activeElement === ultimo) {
+        e.preventDefault();
+        primeiro.focus();
+      }
+    }
   });
 
   // Swipe (arrastar o dedo) para trocar de foto no modal — mesma lógica
