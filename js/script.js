@@ -241,11 +241,13 @@ document.addEventListener('DOMContentLoaded', () => {
     mostrarImagemModalZoom(indice === -1 ? 0 : indice);
     modalZoom.classList.add('modal-zoom--aberto');
     document.body.style.overflow = 'hidden';
+    clearInterval(autoplay); // evita o carrossel avançar sozinho por trás do modal
   }
 
   function fecharModalZoom() {
     modalZoom.classList.remove('modal-zoom--aberto');
     document.body.style.overflow = '';
+    reiniciarAutoplay(); // retoma o autoplay de onde o carrossel parou
   }
 
   botaoFecharZoom.addEventListener('click', fecharModalZoom);
