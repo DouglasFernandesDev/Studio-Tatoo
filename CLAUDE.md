@@ -1,15 +1,15 @@
-# Project: [Nome do Projeto]
+# Project: Aline Santos Tattoo
 
 ## Tech Stack
 
 ### Instalado
 - HTML5 semântico
 - CSS3 — Custom Properties (variáveis), Flexbox, Grid
-- JavaScript (ES6+, Vanilla — sem frameworks)
-- Playwright (testes E2E)
+- JavaScript (ES6+, Vanilla — sem frameworks), organizado em módulos ES (`js/main.js` + `js/modules/`)
 
 ### Planejada (ainda não instalada)
 > Adotar conforme a necessidade. Instalar a dependência **antes** de referenciá-la em código ou nas regras.
+- Playwright (testes E2E) — ainda sem `package.json`/`tests/` no projeto; instalar antes de escrever specs
 - ESLint + Prettier — lint e formatação de JavaScript
 - Stylelint — lint de CSS
 - Vite (ou `live-server`) — servidor de desenvolvimento com live reload
@@ -17,18 +17,18 @@
 
 ## Commands
 - `npx live-server` (ou `npx vite`) — servidor local com live reload
-- `npx eslint .` — lint de JavaScript
-- `npx stylelint "**/*.css"` — lint de CSS
-- `npx prettier --check .` / `npx prettier --write .` — checagem/formatação de código
-- `npx playwright test <arquivo>` — Playwright, um arquivo por vez
+- `npx eslint .` — lint de JavaScript (após instalar o ESLint)
+- `npx stylelint "**/*.css"` — lint de CSS (após instalar o Stylelint)
+- `npx prettier --check .` / `npx prettier --write .` — checagem/formatação de código (após instalar o Prettier)
+- `npx playwright test <arquivo>` — Playwright, um arquivo por vez (após instalar e configurar o Playwright)
 
 ## Architecture
 - Estrutura de projeto estático, organizada por tipo de arquivo na raiz:
-  - `index.html` — página principal; demais páginas ficam na raiz ou em subpastas por seção (`sobre/index.html`, `contato/index.html`)
-  - `css/` — folhas de estilo; `css/base.css` (reset + variáveis), `css/layout.css`, `css/components/` para estilos por componente
-  - `js/` — scripts; `js/main.js` como ponto de entrada, `js/modules/` para módulos ES6 importados via `import`/`export`
-  - `assets/` — imagens, ícones, fontes (`assets/images/`, `assets/fonts/`)
-  - `tests/` — testes Playwright (`tests/<nome>.spec.js`)
+  - `index.html` — página principal, única página do site
+  - `css/` — `css/style.css` (estilos base) e `css/responsive.css` (media queries `min-width`, mobile-first)
+  - `js/` — `js/main.js` como ponto de entrada (`<script type="module">`), `js/modules/` com um módulo ES por responsabilidade (carrossel/modal, formulário, parallax, scrollspy etc.), cada um exportando uma função `iniciar...()`
+  - `imagens/` — fotos, logo e favicon, organizadas em subpastas por categoria (`imagens/estilo-animal/`, `imagens/fineline/` etc.); extensões sempre em minúsculas (`.webp`, `.png`) para evitar quebra em hosts case-sensitive (Netlify, Vercel, GitHub Pages)
+  - `tests/` — testes Playwright (`tests/<nome>.spec.js`) — pasta ainda não criada, ver "Planejada" acima
 - JavaScript organizado em módulos ES6 (`<script type="module" src="js/main.js">`) — evita poluir o escopo global
 - CSS organizado por camadas: variáveis/tokens → reset → layout → componentes → utilitários
 - Sem lógica de servidor: tudo roda no navegador. Se precisar de backend/API, documentar endpoint e método de chamada (`fetch`) aqui quando for adicionado
