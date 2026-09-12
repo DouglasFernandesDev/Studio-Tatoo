@@ -2,7 +2,7 @@
 Studio-Tatoo
 # Aline Santos Tattoo — Site Institucional
 
-Site one-page para estúdio de tatuagem, construído do zero com HTML, CSS e JavaScript puros — sem frameworks, sem build step, sem dependências externas além das fontes do Google Fonts. A ideia por trás dessa escolha foi simplicidade de manutenção: qualquer pessoa com conhecimento básico de front-end consegue abrir os três arquivos e entender o que está acontecendo, sem precisar rodar `npm install` ou aprender a estrutura de um framework.
+Site one-page para estúdio de tatuagem, construído do zero com HTML, CSS e JavaScript puros — sem frameworks, sem build step, sem dependências externas além das fontes do Google Fonts. A ideia por trás dessa escolha foi simplicidade de manutenção: qualquer pessoa com conhecimento básico de front-end consegue abrir o código e entender o que está acontecendo, sem precisar rodar `npm install` ou aprender a estrutura de um framework.
 
 🔗 **Live:** _https://alinesantostattoo.netlify.app/_
 
@@ -30,11 +30,23 @@ Não tem `package.json`, não tem bundler, não tem etapa de build. O que está 
 │   ├── style.css        → estilos base, componentes, modal de zoom
 │   └── responsive.css    → breakpoints (640px e 1024px)
 ├── js/
-│   └── script.js         → toda a interatividade, organizada em 12 seções numeradas
+│   ├── main.js           → ponto de entrada (`<script type="module">`), só orquestra os módulos
+│   └── modules/          → um módulo ES por responsabilidade, cada um expondo uma função `iniciar...()`
+│       ├── cabecalho-scroll.js       → cabeçalho ao rolar + barra de progresso
+│       ├── menu-mobile.js            → menu hambúrguer
+│       ├── scrollspy.js              → destaque do link ativo no menu
+│       ├── parallax.js               → parallax das imagens de fundo
+│       ├── galeria.js                → carrossel + modal de zoom
+│       ├── contadores.js             → contadores animados da seção Sobre
+│       ├── botoes-magneticos.js      → efeito magnético dos botões (só com mouse de precisão)
+│       ├── revelar-scroll.js         → fade/translação ao entrar na tela
+│       ├── whatsapp.js               → fonte única do número/mensagem do WhatsApp
+│       ├── formulario-agendamento.js → validação + montagem da mensagem do formulário
+│       └── ano-rodape.js             → ano dinâmico no rodapé
 └── imagens/              → fotos do portfólio, logo, favicon
 ```
 
-O `script.js` é propositalmente um arquivo único, mas dividido em seções numeradas e comentadas (cabeçalho, menu mobile, scrollspy, parallax, carrossel, modal de zoom, contadores, botões magnéticos, revelar ao rolar, WhatsApp, formulário, ano do rodapé). Isso facilita achar rapidamente qual bloco mexer sem precisar navegar entre múltiplos arquivos — mais prático pra manutenção pontual do que separar em vários módulos pequenos, dado o tamanho do projeto.
+O JS é organizado em módulos ES (`import`/`export`), carregados via `<script type="module" src="js/main.js">`. Cada módulo cuida de uma única responsabilidade e não depende da ordem de execução dos outros — `main.js` só importa e chama cada `iniciar...()` dentro de um `DOMContentLoaded`. Isso substitui a versão anterior (um único `script.js` com 12 seções numeradas): o comportamento é o mesmo, mas cada bloco agora é um arquivo isolado, mais fácil de localizar, testar e reaproveitar sem escopo global compartilhado.
 
 ---
 
@@ -70,10 +82,11 @@ Os links de WhatsApp (botão flutuante e seção de contato) já vêm com uma UR
 ## Acessibilidade
 
 - Hierarquia de headings coerente (`h1` único na hero, `h2` por seção).
-- `alt` descritivo em todas as imagens de conteúdo; imagens puramente decorativas marcadas com `aria-hidden="true"`.
+- `alt` descritivo em imagens de conteúdo relevante; nas fotos do carrossel o `alt` fica vazio porque a legenda visível (`<figcaption>`) já descreve a categoria — evita repetir a mesma descrição dezenas de vezes pra quem usa leitor de tela.
 - Link "pular para o conteúdo" no topo da página, pra quem navega com teclado.
 - Estados de foco visíveis (`:focus-visible`) em vez de removidos globalmente.
 - Modal com `role="dialog"`, `aria-modal="true"` e gerenciamento de foco (detalhado acima).
+- Validação do formulário de agendamento sinalizada via `aria-invalid` + classe CSS, não só por cor — leitor de tela também percebe o campo com erro.
 - Respeito a `prefers-reduced-motion` em todas as animações.
 
 ---
@@ -102,7 +115,7 @@ Ficam registradas aqui as próximas melhorias naturais, caso o projeto cresça:
 
 - **CMS leve** (ex: Netlify CMS ou similar) pra o cliente conseguir trocar fotos da galeria e textos sem depender de um dev pra cada alteração pequena.
 - **Otimização de imagens automatizada** (compressão + `srcset` para diferentes densidades de tela) — hoje as imagens são servidas no tamanho original.
-- **Padronizar a extensão dos arquivos de imagem** (hoje há mistura de `.webP`, `.WebP`, `.webp` — funciona, mas é uma armadilha em hospedagens case-sensitive).
+- **Testes E2E com Playwright** cobrindo os fluxos mais sensíveis (formulário → WhatsApp, carrossel, modal de zoom) — ainda não configurado neste projeto.
 - **Analytics leve** (Plausible ou Fathom) pra o cliente entender de onde vêm os visitantes, sem comprometer privacidade com Google Analytics.
 
 ---
